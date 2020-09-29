@@ -17,7 +17,7 @@ public class QuestionBank {
     ArrayList<Question> questionArrayList = new ArrayList<>();
     private String url = "https://raw.githubusercontent.com/curiousily/simple-quiz/master/script/statements-data.json";
 
-    public List<Question> getQuestions() {
+    public List<Question> getQuestions(final AnswerListAsyncResponse callBack) {
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
@@ -29,22 +29,29 @@ public class QuestionBank {
                     @Override
                     public void onResponse(JSONArray response) {
 
-                        for (int i = 0; i < response.length(); i++) {
-                            try {
-                                Question question = new Question();
-                                question.setAnswer(response.getJSONArray(i).get(0).toString());
-                                question.setAnswerTrue(response.getJSONArray(i).getBoolean(1));
-                                questionArrayList.add(question);
-                                //Log.d("JSON", "onResponse: " + response.getJSONArray(i).get(0));
-                                //Log.d("JSON", "onResponse: " + response.getJSONArray(i).getBoolean(1));
+            for (int i = 0; i < response.length(); i++) {
+                try {
 
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
+                    Question question = new Question();
+                    question.setAnswer(response.getJSONArray(i).get(0).toString());
+                    question.setAnswerTrue(response.getJSONArray(i).getBoolean(1));
 
-                    }
-                }, new Response.ErrorListener() {
+                    questionArrayList.add(question);
+
+
+                    //Log.d("JSON", "onResponse: " + question);
+                    //Log.d("JSON", "onResponse: " + response.getJSONArray(i).get(0));
+                    //Log.d("JSON", "onResponse: " + response.getJSONArray(i).getBoolean(1));
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (callBack != null) callBack.processFinished(questionArrayList);
+
+        }
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
 
