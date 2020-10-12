@@ -45,5 +45,15 @@
 
     </RelativeLayout>
 
+    <Button
+        android:id="@+id/startButton"
+        android:text="@string/get_started_text"
+        android:textColor="@color/colorAccent"
+        android:background="@android:color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+    </Button>
+
 
 </LinearLayout>
