@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "275227069422",
+    "firebase_url": "https://reminisce-56537.firebaseio.com",
+    "project_id": "reminisce-56537",
+    "storage_bucket": "reminisce-56537.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:275227069422:android:90b11abd282065819e1cff",
+        "android_client_info": {
+          "package_name": "com.mcq.reminisce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "275227069422-negomhctr5nsv6njf38b1lfj5fvpfokm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mcq.reminisce",
+            "certificate_hash": "88fa7a2293a4a15aaa3f814ca8aac1b29a5b2c6b"
+          }
+        },
+        {
+          "client_id": "275227069422-ea2et75idtdb3bq0par4rtfl0dmbsl34.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkGNOkgzu1dXwh9QBbCyozBR3cf2rbvDI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "275227069422-ea2et75idtdb3bq0par4rtfl0dmbsl34.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
