@@ -34,7 +34,7 @@
             <TextView
                 android:id="@+id/gratefulText"
                 android:layout_gravity="center"
-                android:text="@string/grateful_text"
+                android:text="@string/cardview_text"
                 android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">

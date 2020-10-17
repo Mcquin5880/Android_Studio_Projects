@@ -3,14 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_gravity="center"
-    android:orientation="vertical"
-    android:padding="16dp"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="18dp"
     tools:context=".CreateAccountActivity">
 
     <ProgressBar
-        android:id="@+id/create_acct_progress"
+        android:id="@+id/create_acct_progress_bar"
         style="?android:attr/progressBarStyleLarge"
         android:visibility="gone"
         android:layout_width="wrap_content"
@@ -18,9 +18,9 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:id="@+id/acct_login_form"
+        android:id="@+id/account_login_form"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" >
 
         <EditText
             android:id="@+id/username_account"
@@ -42,28 +42,29 @@
 
         <EditText
             android:id="@+id/password_account"
-            android:layout_margin="16dp"
             android:hint="@string/password_hint"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints="" />
-
-        <Button
-            android:id="@+id/create_acct_button"
-            android:textColor="@color/colorPrimaryDark"
-            android:text="@string/create_acct_text"
-            android:background="@android:color/darker_gray"
+            android:paddingBottom="16dp"
             android:layout_marginTop="16dp"
-            android:textStyle="bold"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"/>
+
+
+
 
     </LinearLayout>
 
 
-
+    <Button
+        android:id="@+id/create_acct_button"
+        android:textColor="@color/colorAccent"
+        android:text="@string/create_acct_text"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="16dp"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 
 
