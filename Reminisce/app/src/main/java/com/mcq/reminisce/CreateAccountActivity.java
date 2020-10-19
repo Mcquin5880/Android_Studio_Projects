@@ -30,11 +30,10 @@ import java.util.Objects;
 
 public class CreateAccountActivity extends AppCompatActivity {
 
-    private Button loginButton;
-    private Button createAccountButton;
+    private EditText userNameEditText;
     private EditText emailEditText;
     private EditText passwordEditText;
-    private EditText userNameEditText;
+    private Button createAccountButton;
     private ProgressBar progressBar;
 
     // ---------------------------------------------------------------------------------------------
@@ -57,11 +56,11 @@ public class CreateAccountActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        createAccountButton = findViewById(R.id.create_acct_button);
-        progressBar = findViewById(R.id.create_acct_progress_bar);
+        userNameEditText = findViewById(R.id.username_account);
         emailEditText = findViewById(R.id.email_account);
         passwordEditText = findViewById(R.id.password_account);
-        userNameEditText = findViewById(R.id.username_account);
+        createAccountButton = findViewById(R.id.create_acct_button);
+        progressBar = findViewById(R.id.create_acct_progress_bar);
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -169,7 +168,6 @@ public class CreateAccountActivity extends AppCompatActivity {
         } else {
 
         }
-
     }
 
     @Override
