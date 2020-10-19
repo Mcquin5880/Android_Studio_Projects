@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,10 +22,14 @@ import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.Date;
+
+import model.Journal;
 import util.JournalAPI;
 
 public class PostJournalActivity extends AppCompatActivity implements View.OnClickListener {
@@ -54,6 +59,7 @@ public class PostJournalActivity extends AppCompatActivity implements View.OnCli
 
     private CollectionReference collectionReference = firebaseDB.collection("Journal");
     private Uri imageURI;
+    private String TAG = "PostJournalActivity";
 
 
     @Override
@@ -98,27 +104,57 @@ public class PostJournalActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void saveJournal() {
-        String title = titleET.getText().toString().trim();
-        String thoughts = thoughtsET.getText().toString().trim();
+
+        final String title = titleET.getText().toString().trim();
+        final String thoughts = thoughtsET.getText().toString().trim();
 
         progressBar.setVisibility(View.VISIBLE);
 
         if (!TextUtils.isEmpty(title) && !TextUtils.isEmpty(thoughts) && imageURI != null) {
 
-            StorageReference filePath = storageReference.child("journal_images").child("my_image_" + Timestamp.now().getSeconds()); // timestamp to ensure each image has a unique file id
+            final StorageReference filePath = storageReference.child("journal_images").child("my_image_" + Timestamp.now().getSeconds()); // timestamp to ensure each image has a unique file id
+
             filePath.putFile(imageURI).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    progressBar.setVisibility(View.INVISIBLE);
-                    // todo: create journal object
-                    // todo: invoke our collection reference
-                    //todo: save journal instance
+
+                    filePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+
+                            String imageURL = uri.toString();
+
+                            Journal journal = new Journal();
+                            journal.setTitle(title);
+                            journal.setThought(thoughts);
+                            journal.setImageURL(imageURL);
+                            journal.setTimeAdded(new Timestamp(new Date()));
+                            journal.setUsername(currentUsername);
+                            journal.setUserID(currentUserID);
+
+
+                            collectionReference.add(journal).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                    startActivity(new Intent(PostJournalActivity.this, JournalListActivity.class));
+                                    finish();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d(TAG, "onFailure: " + e.getMessage());
+                                }
+                            });
+
+                            //todo: save journal instance
+                        }
+                    });
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     progressBar.setVisibility(View.INVISIBLE);
-                    // blank for now
                 }
             });
 
