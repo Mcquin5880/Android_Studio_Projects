@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -46,6 +47,9 @@ public class PostJournalActivity extends AppCompatActivity implements View.OnCli
     private String currentUserID;
     private String currentUsername;
 
+    private Uri imageURI;
+    private String TAG = "PostJournalActivity";
+
     // ---------------------------------------------------------------------------------------------
     // Firebase
     // ---------------------------------------------------------------------------------------------
@@ -58,9 +62,7 @@ public class PostJournalActivity extends AppCompatActivity implements View.OnCli
     private StorageReference storageReference;
 
     private CollectionReference collectionReference = firebaseDB.collection("Journal");
-    private Uri imageURI;
-    private String TAG = "PostJournalActivity";
-
+    // ---------------------------------------------------------------------------------------------
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,7 @@ public class PostJournalActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_post_journal);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        storageReference = FirebaseStorage.getInstance().getReference();
         progressBar = findViewById(R.id.post_progressBar);
         currentUserTextView = findViewById(R.id.post_username_textview);
         titleET = findViewById(R.id.post_title_ET);
@@ -195,6 +198,7 @@ public class PostJournalActivity extends AppCompatActivity implements View.OnCli
         switch (v.getId()) {
             case R.id.post_save_journal_BTN:
                 //
+                saveJournal();
                 break;
             case R.id.cameraPostButton:
                 Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
