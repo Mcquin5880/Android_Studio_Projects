@@ -47,11 +47,11 @@
 
     <Button
         android:id="@+id/startButton"
-        android:text="@string/get_started_text"
-        android:textColor="@color/colorAccent"
-        android:background="@android:color/transparent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/screen_background_light_transparent"
+        android:text="@string/get_started_text"
+        android:textColor="@color/colorPrimary">
 
     </Button>
 

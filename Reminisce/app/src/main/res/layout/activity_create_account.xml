@@ -56,13 +56,13 @@
 
     <Button
         android:id="@+id/create_acct_button"
-        android:textColor="@color/colorAccent"
-        android:text="@string/create_acct_text"
-        android:background="@android:color/transparent"
-        android:layout_marginTop="16dp"
-        android:textStyle="bold"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@android:drawable/screen_background_light_transparent"
+        android:text="@string/create_acct_text"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold" />
 
 
 

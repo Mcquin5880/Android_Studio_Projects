@@ -28,6 +28,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import util.JournalAPI;
+
 public class CreateAccountActivity extends AppCompatActivity {
 
     private EditText userNameEditText;
@@ -133,6 +135,10 @@ public class CreateAccountActivity extends AppCompatActivity {
                                         if (Objects.requireNonNull(task.getResult()).exists()) {
                                             progressBar.setVisibility(View.INVISIBLE);
                                             String name = task.getResult().getString("username");
+
+                                            JournalAPI journalAPI = JournalAPI.getInstance(); // Global API
+                                            journalAPI.setUserID(currentUserID);
+                                            journalAPI.setUsername(name);
 
                                             Intent intent = new Intent(CreateAccountActivity.this, PostJournalActivity.class);
                                             intent.putExtra("username", name);
