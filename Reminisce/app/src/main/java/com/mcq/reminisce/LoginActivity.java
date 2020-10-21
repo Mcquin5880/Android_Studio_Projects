@@ -62,6 +62,8 @@ public class LoginActivity extends AppCompatActivity {
         emailAddress = findViewById(R.id.email_account);
         password = findViewById(R.id.password_account);
 
+        progressBar = findViewById(R.id.login_progress);
+
         createAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +80,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginUserWithEmailAndPassword(String email, String password) {
+
+        progressBar.setVisibility(View.VISIBLE);
+
         if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
 
             firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -93,6 +98,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (error != null) {}
                             assert value != null;
                             if (!value.isEmpty()) {
+                                progressBar.setVisibility(View.INVISIBLE);
                                 for (QueryDocumentSnapshot snapshot : value) {
                                     JournalAPI journalAPI = JournalAPI.getInstance();
                                     journalAPI.setUsername(snapshot.getString("username"));
@@ -108,12 +114,13 @@ public class LoginActivity extends AppCompatActivity {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
             });
 
         } else {
             Toast.makeText(LoginActivity.this, "Please enter your email and password.", Toast.LENGTH_LONG).show();
+            progressBar.setVisibility(View.INVISIBLE);
         }
     }
 }
