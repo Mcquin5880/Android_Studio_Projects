@@ -10,7 +10,7 @@
         android:id="@+id/post_ImageView"
         android:layout_width="387dp"
         android:layout_height="267dp"
-        android:src="@drawable/nature1"
+        android:src="@drawable/lol"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
