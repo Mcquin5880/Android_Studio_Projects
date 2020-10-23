@@ -5,17 +5,14 @@ import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.mcq.reminisce.R;
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
-
 import model.Journal;
 
 public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecyclerAdapter.ViewHolder>{
@@ -45,7 +42,7 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
 
         holder.title.setText(journal.getTitle());
         holder.thoughts.setText(journal.getThought());
-        //holder.name.setText(journal.getUsername());
+        holder.name.setText(journal.getUsername());
         imageURL = journal.getImageURL();
         String timeAgo = (String) DateUtils.getRelativeTimeSpanString(journal.getTimeAdded().getSeconds() * 1000);
         holder.dateAdded.setText(timeAgo);
@@ -66,6 +63,7 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
 
         public TextView title, thoughts, dateAdded, name;
         public ImageView image;
+        public ImageButton shareButton;
         String userID;
         String username;
 
@@ -76,7 +74,15 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
             thoughts = itemView.findViewById(R.id.journal_thought_list);
             dateAdded = itemView.findViewById(R.id.journal_timestamp_list);
             image = itemView.findViewById(R.id.journal_image_list);
-            //name = itemView.findViewById(R.id.)
+            name = itemView.findViewById(R.id.journal_row_username);
+
+            shareButton = itemView.findViewById(R.id.journal_row_share_button);
+            shareButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //context.startActivity()
+                }
+            });
 
         }
     }
