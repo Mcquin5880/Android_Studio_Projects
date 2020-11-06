@@ -30,7 +30,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cameraPostButton" />
+        app:layout_constraintTop_toBottomOf="@+id/cameraPostButton"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
 
     <TextView
         android:id="@+id/post_date_textview"
@@ -80,7 +81,8 @@
         android:layout_height="58dp"
         android:ems="10"
         android:hint="@string/thoughts"
-        android:inputType="textPersonName"
+        android:inputType="textMultiLine"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="#00BCD4"
         android:textColorHint="#00BCD4"
         android:textStyle="bold"
