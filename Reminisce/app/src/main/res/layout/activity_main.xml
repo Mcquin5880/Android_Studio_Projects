@@ -8,7 +8,8 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="18dp"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/gradient_background">
 
     <TextView
         android:id="@+id/title"
@@ -16,6 +17,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_slab_bold"
         android:text="@string/title_text"
+        android:textColor="#00BCD4"
         android:textSize="30sp" />
 
     <RelativeLayout
@@ -51,7 +53,8 @@
         android:layout_height="wrap_content"
         android:background="@android:drawable/screen_background_light_transparent"
         android:text="@string/get_started_text"
-        android:textColor="@color/colorPrimary">
+        android:textColor="@color/gradientColor"
+        android:textStyle="bold">
 
     </Button>
 
