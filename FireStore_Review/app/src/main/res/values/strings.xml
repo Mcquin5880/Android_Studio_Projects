@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">FireStore_Review</string>
-    <string name="enter_title">Enter title</string>
-    <string name="save">SAVE</string>
-    <string name="enter_thought">Enter thought</string>
-    <string name="show_data">SHOW DATA</string>
-</resources>
